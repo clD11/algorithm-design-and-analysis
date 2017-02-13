@@ -1,5 +1,5 @@
 # Algorithms
 
-## Divide and Conquor
+### Divide and Conquor
 
 * Merge Sort
