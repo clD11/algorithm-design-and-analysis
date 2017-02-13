@@ -1,3 +1,3 @@
-# algorithm-design-and-analysis
+# Algorithms
 
 ## Merge Sort
