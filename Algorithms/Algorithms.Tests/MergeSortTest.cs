@@ -15,13 +15,11 @@ namespace Algorithms.Tests
         }
 
         [TestMethod]
-        public void ShouldReturnSortedArray()
+        [DataRow(new int[] { 1 }, new int[] { 1 })]
+        [DataRow(new int[] { 8, 7, 6, 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8 } )]
+        public void ShouldReturnSortedArray(int[] unsorted, int[] expected)
         {
-            var unsorted = new int[] { 8, 7, 6, 5, 4, 3, 2, 1 };
-            var expected = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-
             var actual = mergeSort.Sort(unsorted);
-
             CollectionAssert.AreEqual(expected, actual);
         }
 

@@ -2,9 +2,23 @@
 
 namespace Algorithms
 {
-    public class MergeSort
+    public class Inversion
     {
-        public int[] Sort(int[] array)
+        private long count = 0;
+
+        public long Count(int[] array)
+        {
+            if (array.Length < 1)
+            {
+                return count;
+            }
+
+            divide(array);
+
+            return count;
+        }
+
+        private int[] divide(int[] array)
         {
             if (array.Length <= 1)
             {
@@ -19,13 +33,13 @@ namespace Algorithms
             Array.Copy(array, left, middle);
             Array.Copy(array, middle, right, 0, right.Length);
 
-            left = Sort(left);
-            right = Sort(right);
+            left = divide(left);
+            right = divide(right);
 
-            return Merge(left, right);
+            return merge(left, right);
         }
 
-        public int[] Merge(int[] left, int[] right)
+        private int[] merge(int[] left, int[] right)
         {
             var merged = new int[left.Length + right.Length];
 
@@ -42,12 +56,13 @@ namespace Algorithms
                 {
                     if (right[j] < left[i])
                     {
+                        count = count + left.Length - i;
                         merged[k] = right[j++];
                     }
                 }
 
                 if (j >= right.Length)
-                {
+                {                   
                     return copy(left, i, merged, ++k);
                 }
 
@@ -61,12 +76,10 @@ namespace Algorithms
         }
 
         private int[] copy(int[] source, int sourceIndex, int[] destination, int destinationIndex)
-        {
-            var index = destinationIndex;
-
-            for (var i = sourceIndex; i < source.Length; i++)
+        {           
+            for (var e = sourceIndex; e < source.Length; e++)
             {
-                destination[index++] = source[i];
+                destination[destinationIndex++] = source[e];
             }
 
             return destination;
