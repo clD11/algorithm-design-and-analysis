@@ -60,6 +60,7 @@
     <Compile Include="InversionTest.cs" />
     <Compile Include="MergeSortTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MatrixMultiplicationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj">
