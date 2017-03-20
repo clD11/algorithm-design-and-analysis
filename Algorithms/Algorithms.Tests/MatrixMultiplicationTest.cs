@@ -8,7 +8,7 @@ namespace Algorithms.Tests
         private IMatrixMultiplication matrixMultiplication;
 
         [TestMethod]
-        public void ShouldMultiplyMatriciesCubic()
+        public void ShouldMultiplyMatriciesNaive()
         {
             matrixMultiplication = new SquareMatrixMultiplication();
 
@@ -22,9 +22,9 @@ namespace Algorithms.Tests
         }
 
         [TestMethod]
-        public void ShouldMultiplyMatriciesSubcubic()
+        public void ShouldMultiplyMatriciesRecursive()
         {
-            matrixMultiplication = new StrassenMatrixMultiplication();
+            matrixMultiplication = new SquareMatrixMultiplicationRecursive();
 
             int[,] m1 = { { 1, 2, }, { 3, 4 } };
             int[,] m2 = { { 5, 6 }, { 7, 8 } };
