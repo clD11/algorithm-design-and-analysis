@@ -60,7 +60,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SquareMatrixMultiplication.cs" />
-    <Compile Include="StrassenMatrixMultiplication.cs" />
+    <Compile Include="SquareMatrixMultiplicationRecursive.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
