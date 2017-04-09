@@ -61,7 +61,7 @@
     <Compile Include="MergeSortTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MatrixMultiplicationTest.cs" />
-    <Compile Include="QuicksortTest.cs" />
+    <Compile Include="QuickSortTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj">

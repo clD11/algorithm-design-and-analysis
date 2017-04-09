@@ -12,7 +12,7 @@
             }
         }
 
-        public int partition(int[] arr, int p, int r)
+        private int partition(int[] arr, int p, int r)
         {
             int x = arr[r];
             int i = p - 1;
@@ -22,16 +22,16 @@
                 if (arr[j] <= x)
                 {
                     i = i + 1;
-                    swap(ref arr, i, j);
+                    swap(arr, i, j);
                 }                
             }
 
-            swap(ref arr, i + 1, r);
+            swap(arr, i + 1, r);
 
             return i + 1;
         }
 
-        public void swap(ref int[] arr, int i, int j)
+        private void swap(int[] arr, int i, int j)
         {
             var temp = arr[i];
             arr[i] = arr[j];
