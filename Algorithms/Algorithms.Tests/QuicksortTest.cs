@@ -22,5 +22,13 @@ namespace Algorithms.Tests
             testee.Sort(actual, 0, actual.Length - 1);
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [DataTestMethod]
+        [DataRow(new int[] { 3, 5, 2, 1, 4 }, new int[] { 1, 2, 3, 5, 4  })]
+        public void partitionCoursera(int[] unsorted, int[] expected)
+        {
+            testee.partitionCoursera(unsorted, 0, unsorted.Length);
+            CollectionAssert.AreEqual(expected, unsorted);
+        }
     }
 }
