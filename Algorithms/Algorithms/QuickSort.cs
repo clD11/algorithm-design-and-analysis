@@ -2,43 +2,36 @@
 {
     public class QuickSort
     {
-        public void Sort(int[] arr, int p, int r)
+        /// <summary>
+        /// Recurse each partitioned subarry around pivot,
+        /// everything to left is less than everything to right
+        /// </summary>
+        /// <param name="arr">Array to be sorted</param>
+        /// <param name="l">Left array index</param>
+        /// <param name="r">Right array index</param>
+
+        public int Comparisons { get; set; } = 0;
+
+        // Uses first element as pivot
+        public void Sort(int[] arr, int l, int r)
         {
-            if (p < r)
+            if (l < r)
             {
-                int q = partitionKR(arr, p, r);
-                Sort(arr, p, q - 1);
-                Sort(arr, q + 1, r);
+                Comparisons += r - l - 1;
+                int p = partitionCoursera(arr, l, r);
+                Sort(arr, l, p);
+                Sort(arr, p + 1, r);
             }
         }
 
-        private int partitionKR(int[] arr, int p, int r)
+        public int partitionCoursera(int[] arr, int l, int r)
         {
-            int x = arr[r];
-            int i = p - 1;
-
-            for (var j = p; j <= r - 1; j++)
-            {
-                if (arr[j] <= x)
-                {
-                    i = i + 1;
-                    swap(arr, i, j);
-                }                
-            }
-
-            swap(arr, i + 1, r);
-
-            return i + 1;
-        }
-
-        public void partitionCoursera(int[] arr, int l, int r)
-        {
-            int p = arr[l];
+            int pivot = arr[l];
             int i = l + 1;
 
-            for (int j = i + 1; j < arr.Length; j++)
+            for (int j = l + 1; j <= r; j++)
             {
-                if (arr[j] < arr[0])
+                if (arr[j] < pivot)
                 {
                     swap(arr, i, j);
                     i = i + 1;
@@ -46,6 +39,8 @@
             }
 
             swap(arr, l, i - 1);
+
+            return i - 1;
         }
 
         private void swap(int[] arr, int i, int j)
