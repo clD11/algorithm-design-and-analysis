@@ -7,12 +7,12 @@ namespace Algorithms.Tests
     [TestClass]
     public class QuickSortTest
     {
-        private QuickSort testee = new QuickSort();
+        private IQuickSort testee = new QuickSortFirst();
 
         [TestInitialize]
         public void TestInitialize()
         {
-            testee = new QuickSort();
+            testee = new QuickSortFirst();
         }
 
         [DataTestMethod]
@@ -50,6 +50,28 @@ namespace Algorithms.Tests
 
             long expected = 162080;
             long actual = testee.Comparisons;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestCourseraComparisonsWhereLastElementPivot()
+        {
+            IQuickSort last = new QuickSortLast();
+
+            string[] testData = File.ReadLines(@"./TestData/QuickSortData.txt").ToArray();
+
+            int[] unsorted = new int[testData.Length];
+
+            for (var i = 0; i < unsorted.Length; i++)
+            {
+                unsorted[i] = int.Parse(testData[i]);
+            }
+
+            last.Sort(unsorted, 0, unsorted.Length - 1);
+
+            long expected = 153675;
+            long actual = last.Comparisons;
 
             Assert.AreEqual(expected, actual);
         }
