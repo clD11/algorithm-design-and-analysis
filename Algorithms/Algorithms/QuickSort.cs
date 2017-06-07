@@ -3,14 +3,14 @@
     public class QuickSort
     {
         /// <summary>
-        /// Recurse each partitioned subarry around pivot,
+        /// Recurse each partitioned subarray around pivot,
         /// everything to left is less than everything to right
         /// </summary>
         /// <param name="arr">Array to be sorted</param>
         /// <param name="l">Left array index</param>
         /// <param name="r">Right array index</param>
 
-        public int Comparisons { get; set; } = 0;
+        public long Comparisons { get; set; } = 0;
 
         // Uses first element as pivot
         public void Sort(int[] arr, int l, int r)

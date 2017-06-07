@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Linq;
 
 namespace Algorithms.Tests
 {
@@ -30,6 +32,26 @@ namespace Algorithms.Tests
         {
             testee.Sort(unsorted, 0, unsorted.Length - 1);
             Assert.AreEqual(expected, testee.Comparisons);
+        }
+
+        [TestMethod]
+        public void TestCourseraComparisonsWhereFirstElementPivot()
+        {
+            string[] testData = File.ReadLines(@"./TestData/QuickSortData.txt").ToArray();
+
+            int[] unsorted = new int[testData.Length];
+
+            for (var i = 0; i < unsorted.Length; i++)
+            {
+                unsorted[i] = int.Parse(testData[i]);
+            }
+
+            testee.Sort(unsorted, 0, unsorted.Length - 1);
+
+            long expected = 162080;
+            long actual = testee.Comparisons;
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
