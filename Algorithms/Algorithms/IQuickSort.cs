@@ -2,7 +2,10 @@
 {
     public interface IQuickSort
     {
-        void Sort(int[] arr, int l, int r);
         long Comparisons { get; set; }
+
+        void SortFirst(int[] arr, int l, int r);
+        void SortLast(int[] unsorted, int l, int r);
+        void SortMedian(int[] unsorted, int l, int r);
     }
 }

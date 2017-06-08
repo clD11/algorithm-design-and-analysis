@@ -7,59 +7,88 @@ namespace Algorithms.Tests
     [TestClass]
     public class QuickSortTest
     {
-        private IQuickSort testee = new QuickSortFirst();
+        private IQuickSort testee;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            testee = new QuickSortFirst();
+            testee = new QuickSort();
+        }
+
+        [TestMethod]
+        public void TestSortFirstPivot()
+        {
+            var unsorted = testData();
+            var expected = expectedData(unsorted.Length);
+
+            testee.SortFirst(unsorted, 0, unsorted.Length - 1);
+
+            CollectionAssert.AreEqual(expected, unsorted);
         }
 
         [DataTestMethod]
-        [DataRow(new int[] { 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5 })]
-        [DataRow(new int[] { 12, 4, 6, 2, 1 }, new int[] { 1, 2, 4, 6, 12 })]
-        [DataRow(new int[] { 2, 2, 1, 1, 3 }, new int[] { 1, 1, 2, 2, 3 })]
-        [DataRow(new int[] { 1, 3, 2 }, new int[] { 1, 2, 3 })]
-        public void TestQuickSortShouldReturnSortedArray(int[] actual, int[] expected)
+        [DataRow(new int[] { 11, 5, 2, 14, 20, 7, 6, 8, 13, 1, 12, 16, 15, 10, 18, 3, 19, 17, 4, 9 }, 60)]
+        public void TestComparisonsFirstPivot(int[] unsorted, int expected)
         {
-            testee.Sort(actual, 0, actual.Length - 1);
-            CollectionAssert.AreEqual(expected, actual);
-        }
-
-        [DataTestMethod]
-        [DataRow(new int[] { 1, 3, 2 }, 1)]
-        public void TestComparisons(int[] unsorted, int expected)
-        {
-            testee.Sort(unsorted, 0, unsorted.Length - 1);
+            testee.SortFirst(unsorted, 0, unsorted.Length - 1);
             Assert.AreEqual(expected, testee.Comparisons);
         }
 
         [TestMethod]
-        public void TestCourseraComparisonsWhereFirstElementPivot()
+        public void TestSortLastPivot()
         {
-            string[] testData = File.ReadLines(@"./TestData/QuickSortData.txt").ToArray();
+            var unsorted = testData();
+            var expected = expectedData(unsorted.Length);
 
-            int[] unsorted = new int[testData.Length];
+            testee.SortLast(unsorted, 0, unsorted.Length - 1);
 
-            for (var i = 0; i < unsorted.Length; i++)
-            {
-                unsorted[i] = int.Parse(testData[i]);
-            }
+            CollectionAssert.AreEqual(expected, unsorted);
+        }
 
-            testee.Sort(unsorted, 0, unsorted.Length - 1);
-
-            long expected = 162080;
-            long actual = testee.Comparisons;
-
-            Assert.AreEqual(expected, actual);
+        [DataTestMethod]
+        [DataRow(new int[] { 11, 5, 2, 14, 20, 7, 6, 8, 13, 1, 12, 16, 15, 10, 18, 3, 19, 17, 4, 9 }, 68)]
+        public void TestComparisonsLastPivot(int[] unsorted, int expected)
+        {
+            testee.SortLast(unsorted, 0, unsorted.Length - 1);
+            Assert.AreEqual(expected, testee.Comparisons);
         }
 
         [TestMethod]
-        public void TestCourseraComparisonsWhereLastElementPivot()
+        public void TestSortMedianPivot()
         {
-            IQuickSort last = new QuickSortLast();
+            var unsorted = testData();
+            var expected = expectedData(unsorted.Length);
 
+            testee.SortMedian(unsorted, 0, unsorted.Length - 1);
+
+            CollectionAssert.AreEqual(expected, unsorted);
+        }
+
+        [DataTestMethod]
+        [DataRow(new int[] { 11, 5, 2, 14, 20, 7, 6, 8, 13, 1, 12, 16, 15, 10, 18, 3, 19, 17, 4, 9 }, 56)]
+        public void TestComparisonsMedianPivot(int[] unsorted, int expected)
+        {
+            testee.SortMedian(unsorted, 0, unsorted.Length - 1);
+            Assert.AreEqual(expected, testee.Comparisons);
+        }
+
+        private int[] expectedData(int inclusiveRange)
+        {
+            var sorted = new int[inclusiveRange];
+
+            for (var i = 0; i < inclusiveRange; i++)
+            {
+                sorted[i] = i + 1;
+            }
+
+            return sorted;
+        }
+
+        private int[] testData()
+        {
             string[] testData = File.ReadLines(@"./TestData/QuickSortData.txt").ToArray();
+
+            Assert.IsTrue(testData.Length == 10000);
 
             int[] unsorted = new int[testData.Length];
 
@@ -68,12 +97,7 @@ namespace Algorithms.Tests
                 unsorted[i] = int.Parse(testData[i]);
             }
 
-            last.Sort(unsorted, 0, unsorted.Length - 1);
-
-            long expected = 153675;
-            long actual = last.Comparisons;
-
-            Assert.AreEqual(expected, actual);
+            return unsorted;
         }
     }
 }
