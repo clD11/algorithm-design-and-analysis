@@ -1,8 +1,8 @@
-# Algorithms
+# Coursera - Algorithm Design and Analysis
 
 ### Divide and Conquer
 
 * Merge Sort
 * Inversion Count (Merge Sort)
 * Matrix Multiplication (Square Matrix and Strassens Multiplication)
-* QuickSort (CLRS - Introduction to Algorithms) 
+* QuickSort (First, Last and Median pivot) 
