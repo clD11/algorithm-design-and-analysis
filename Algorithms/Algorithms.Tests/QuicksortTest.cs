@@ -72,6 +72,30 @@ namespace Algorithms.Tests
             Assert.AreEqual(expected, testee.Comparisons);
         }
 
+        [TestMethod]
+        public void TestProgrammeAssingnment1()
+        {
+            var unsorted = testData();
+            testee.SortFirst(unsorted, 0, unsorted.Length - 1);
+            Assert.AreEqual(162085, testee.Comparisons);
+        }
+
+        [TestMethod]
+        public void TestProgrammeAssingnment2()
+        {
+            var unsorted = testData();
+            testee.SortLast(unsorted, 0, unsorted.Length - 1);
+            Assert.AreEqual(164123, testee.Comparisons);
+        }
+
+        [TestMethod]
+        public void TestProgrammeAssingnment3()
+        {
+            var unsorted = testData();
+            testee.SortMedian(unsorted, 0, unsorted.Length - 1);
+            Assert.AreEqual(138382, testee.Comparisons);
+        }
+
         private int[] expectedData(int inclusiveRange)
         {
             var sorted = new int[inclusiveRange];

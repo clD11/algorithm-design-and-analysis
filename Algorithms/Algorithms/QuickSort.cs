@@ -1,4 +1,7 @@
-﻿namespace Algorithms
+﻿using System;
+using System.Collections.Generic;
+
+namespace Algorithms
 {
     public class QuickSort : IQuickSort
     {
@@ -44,20 +47,7 @@
             {
                 Comparisons += r - l;
 
-                var len = r + l + 1;
-
-                var median = 0;
-
-                if (len % 2 == 0)
-                {
-                    median = len / 2 - 1;
-                }
-                else
-                {
-                    median = len / 2;
-                }
-
-                swap(arr, l, median);
+                swap(arr, l, medianIndex(arr, l, r));
 
                 int p = partition(arr, l, r);
                 SortMedian(arr, l, p - 1);
@@ -89,6 +79,45 @@
             var temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp; 
+        }
+
+        private int medianIndex(int[] arr, int l, int r)
+        {
+            var len = r + l + 1;
+            var m = 0;
+
+            if (len % 2 == 0)
+            {
+                m = len / 2 - 1;
+            }
+            else
+            {
+                m = len / 2;
+            }
+
+            var map = new Dictionary<int, int>();
+
+            map[arr[l]] = l;
+            map[arr[r]] = r;
+            map[arr[m]] = m;
+
+            return map[median(arr[l], arr[r], arr[m])];
+        }
+
+        private int median(int a, int b, int c)
+        {
+            if ((a - b) * (c - a) >= 0)
+            {
+                return a;
+            }
+            else
+            {
+                if ((b - a) * (c - b) >= 0)
+                {
+                    return b;
+                }
+            }
+            return c;
         }
     }
 }
