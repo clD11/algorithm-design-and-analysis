@@ -1,4 +1,4 @@
-# Coursera - Algorithm Design and Analysis
+# Coursera - Algorithms Design and Analysis
 
 ### Divide and Conquer
 
